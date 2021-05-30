@@ -41,11 +41,7 @@ function draw() {
         document.getElementById('node-operation').innerHTML = "Agregar Vértice";
         editNode(data, clearNodePopUp, callback);
       },
-      editNode: function (data, callback) {
-        // filling in the popup DOM elements
-        document.getElementById('node-operation').innerHTML = "Editar Vértice";
-        editNode(data, cancelNodeEdit, callback);
-      },
+   
       addEdge: function (data, callback) {
         if (data.from == data.to) {
           var r = confirm(`
@@ -577,7 +573,7 @@ function draw() {
       }
     }
     /*---------------------------------------------------------------------------------------------------
-                                    funciones para el item 4
+                                    funciones para euleriano o hamiltoniano
     -----------------------------------------------------------------------------------------------------
      */
      //// EULERIANO ////
@@ -638,7 +634,7 @@ function draw() {
       boton.disabled=true;
     }
     /*---------------------------------------------------------------------------------------------------
-                                    funciones para el item 5
+                                    funciones para el Flujo Maximo
     -----------------------------------------------------------------------------------------------------
      */
     function item_FlujoMaximo(){
@@ -670,20 +666,7 @@ function draw() {
       }
     }
 
-    function item_ArbolGenerado(){
-      const boton5 = document.querySelector("#item5");
-      var opcion = document.querySelector("#tipoGrafo").value;
-      var algoritmo_kruskal = Kruskal();
-      const arKruskal = document.querySelector("#generarKruskal");
-      const aristaEntrada = document.querySelector("#aEntrada");
-      const aristaSalida = document.querySelector("#aSalida");
-      arKruskal.textContent = algoritmo_kruskal;
-      aristaEntrada.textContent = a_desde;
-      aristaSalida.textContent = a_hacia;
-      boton5.disabled=true;
-    }
-
-    
+   
 
     
     

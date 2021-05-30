@@ -5,7 +5,7 @@
 #### Crear y visualizar el grafo
 
 1. En la sección de Grafos seleccione el tipo de Grafo a ingresar:
-    + Simple / Etiquetado
+    + Simple 
     + Dirigido
 
 2. Presione el boton *Comenzar*
