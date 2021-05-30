@@ -665,9 +665,32 @@ function draw() {
         alerta.className="alert alert-danger text-center";
       }
     }
+    /*---------------------------------------------------------------------------------------------------
+                                    funciones para cant nodos
+    -----------------------------------------------------------------------------------------------------
+     */
 
+    function item_nodos(){
+      const boton5 = document.querySelector("#item_nodos");
+      const output = document.querySelector("#hoal");
+      output.textContent= vertices.length;
+      boton5.disabled=true;
+      
+    }
    
+    /*---------------------------------------------------------------------------------------------------
+                                    funciones para cant aristas
+    -----------------------------------------------------------------------------------------------------
+     */
 
+    function item_aristas(){
+      const boton6 = document.querySelector("#item_aristas");
+      const output = document.querySelector("#hoal2");
+      output.textContent= aristas_from.length;
+      boton6.disabled=true;
+      
+    }
+   
     
     
 

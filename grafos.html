@@ -131,6 +131,12 @@
               <li class="list-group-item analisis" data-toggle="collapse" data-target="#FlujoMaximo" aria-expanded="false" aria-controls="FlujoMaximo">
                 Flujo Máximo
               </li>
+              <li class="list-group-item analisis" data-toggle="collapse" data-target="#item_nodos" aria-expanded="false" aria-controls="item_nodos">
+                Cantidad de Nodos
+              </li>
+              <li class="list-group-item analisis" data-toggle="collapse" data-target="#item_aristas" aria-expanded="false" aria-controls="item_aristas">
+                Cantidad de Aristas
+              </li>
         
             </ul>
 
@@ -230,10 +236,29 @@
                 </div>
               </div>
 
+              <div class="collapsing" id="item_nodos">
+                <div class="">
+                  <div class="row d-flex justify-content-center">
+                    <h4>Cantidad de Nodos</h4>
+                    <button onclick="item_nodos()" id="item3" class="btn btn-primary ml-3" ><em class="fas fa-search fa-lg text-white"></em></button>
+                  </div><br>
+                  <p>La Cantidad de Nodos en el grafo es: <strong id="hoal"></strong>.</p><br>
+                </div>
+              </div>
+
+              <div class="collapsing" id="item_aristas">
+                <div class="">
+                  <div class="row d-flex justify-content-center">
+                    <h4>Cantidad de aristas</h4>
+                    <button onclick="item_aristas()" id="item3" class="btn btn-primary ml-3" ><em class="fas fa-search fa-lg text-white"></em></button>
+                  </div><br>
+                  <p>La Cantidad de Aristas en el grafo son: <strong id="hoal2"></strong>.</p><br>
+                </div>
+              </div>
+
   
 
-              
-
+      
             </div>
           </div>
           <div class="row my-5"></div>
