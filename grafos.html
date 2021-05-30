@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+    <link type="text/css" rel="stylesheet" href="css/grafos.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" >
+    <script type="text/javascript" src="js/dibujar.js"></script>
+
+    <script src="https://kit.fontawesome.com/b097035380.js" crossorigin="anonymous"></script>
+    <!-- vis -->
+    <script type="text/javascript" src="js/exampleUtil.js"></script>
+    <script type="text/javascript" src="dist/vis.js"></script>
+    <link href="dist/vis-network.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="img/logo.svg">
+    
+
+    <title>Grafos | Análisis</title>
+  </head>
+  <body> <!--PONER EL BACK EN EL CSS-->
+ 
+      <!-- HEADER -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <div class="row">
+                <a href="index.html"><img src="img/logo.svg" alt="descripcion" width="35" height="35"></a>
+                <a href="index.html" class="navbar-brand mx-3" id="navtitle">Trabajo de Grafos Grupo 3</a>
+            </div>
+            <button class="navbar-toggler border border-light shadow-sm" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Menu">
+                <span class="material-icons text-white"><em class="fas fa-bars text-white"></em></span>
+              </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbar">
+                <div class="row">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link mx-2" id="menu">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="grafos.html" class="nav-link mx-2" id="menu">Grafos</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="materia.html" class="nav-link mx-2" id="menu">Materia</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav><br><br><br>
+
+    <!-- CUERPO -->
+    <div class="container">
+      <div class="row d-flex justify-content-around">
+        <div class="col-lg-5 col-md-12 bg-white rounded shadow my-2">
+          <div class="row my-2 pt-2 d-flex justify-content-center">
+            <h4 id="" >Instrucciones</h4>
+          </div>
+          <div class="row mx-2 my-2 pt-3">
+            <p><strong>1.</strong> Seleccione tipo de grafo:<p>
+              <select class="form-control" id="tipoGrafo">
+                <option value="Simple">Simple </option>
+                <option value="Dirigido">Dirigido </option>
+              </select>
+              <br><strong>2.</strong> Presione comenzar.<br><strong>3.</strong> Seleccione editar y añada vértices o aristas.<br>
+              <strong>4.</strong> Sigue las instrucciones de la parte superior (puedes agregar un peso a la arista, 
+              en caso de que sea un Grafo Etiquetado, de lo contrario, deja el cuadro vacío).<br><strong>5.</strong> 
+              Listo, vé a interactuar con tu Grafo.</p>
+            <select id="locale" style="display: none;"><option value="es">es</option></select>
+          </div>
+          <div class="row d-flex justify-content-center my-2">
+            <a onclick="draw()" id="btnComenzar" style="text-decoration:none">Comenzar</a>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 my-2 bg-white rounded shadow" id="resultado">
+        </div>
+        <div id="node-popUp">
+          <span id="node-operation">Vértices</span>
+          <table style="margin:auto;">
+            <caption></caption>
+            <tr>
+              <th id="th-id">id</th><td><input id="node-id" class="form-control" placeholder="id"/></td>
+            </tr>
+            <tr style="display: none;" >
+              <th id="th-nombre">Nombre</th><td><input id="node-label" class="form-control" placeholder="Nombre" /></td>
+            </tr>
+          </table>
+          <input type="button" class="btn btn-primary" value="Guardar" id="node-saveButton" />
+          <input type="button" class="btn btn-primary"  value="Cancelar" id="node-cancelButton" />
+        </div>
+        <div id="edge-popUp">
+          <span id="edge-operation">Aristas</span>
+          <br>
+          <table style="margin:auto;">
+            <caption></caption>
+            <tr>
+              <th id="th-peso">Peso</th><td><input type="number" id="edge-label" class="form-control" min="0"/></td>
+            </tr>
+          </table>
+          <input type="button" class="btn btn-primary"  value="Guardar" id="edge-saveButton" />
+          <input type="button" class="btn btn-primary"  value="Cancelar" id="edge-cancelButton" />
+        </div>
+      </div>
+      <br>
+
+      <!-- ANALISIS DEL GRAFO -->
+
+      <div class="row bg-white rounded shadow">
+        <div class="col-12">
+          <div class="row d-flex justify-content-center mx-2 my-2 pt-2">
+            <h4 id="title">Análisis del Grafo</h4>
+          </div>
+          <hr>
+
+          <div class="row my-2">
+
+            <ul class="col-lg-3 col-sm-12 my-2 list-group list-group-flush">
+              <li class="list-group-item analisis" data-toggle="collapse" data-target="#MatrizCaminos" aria-expanded="false" aria-controls="MAtrizCaminos">
+                Matriz de Caminos
+              </li>
+              <li class="list-group-item analisis" data-toggle="collapse" data-target="#CaminoCorto" aria-expanded="false" aria-controls="CaminoCorto">
+                Camino más corto
+
+              </li>
+              <li class="list-group-item analisis" data-toggle="collapse" data-target="#Hamil_Euler" aria-expanded="false" aria-controls="Hamil_Euler">
+                Hamiltoniano y/o Euleriano
+              </li>
+              <li class="list-group-item analisis" data-toggle="collapse" data-target="#FlujoMaximo" aria-expanded="false" aria-controls="FlujoMaximo">
+                Flujo Máximo
+              </li>
+              <li class="list-group-item analisis" data-toggle="collapse" data-target="#Proximamente" aria-expanded="false" aria-controls="Proximamente">
+                Proximamente....
+              </li>
+            </ul>
+
+            <div class="col-lg-7 col-sm-12 my-2">
+              <div class="collapsing" id="MatrizCaminos" >
+                <div class="">
+                  <div class="row d-flex justify-content-center">
+                    <h4>Matriz de Caminos</h4>
+                    <button onclick="item_MatrizCamino()" id="item1" class="btn btn-primary ml-3" ><em class="fas fa-search fa-lg text-white"></em></button>
+                  </div><br>
+                  <p>En primer lugar obtenemos la <strong>Matriz de Adyacencia</strong> para el grafo ingresado:</p>
+                  <br>
+                  <div class="row">
+                    <div class="col d-flex justify-content-center">
+                      <div id="matrizAdy"></div>
+                    </div>
+                  </div>
+                  <br>
+                  <p>Obteniendo la matriz de adyacencia, debemos elevar la matriz hasta <strong>n-1</strong> (siendo n = n° de vértices). Así logramos conseguir la <strong>Matriz de Caminos</strong> :</p>
+                  <br><br>
+                  <div class="row">
+                    <div class="col d-flex justify-content-center">
+                      <div id="matrizCam"></div>
+                    </div>
+                  </div>
+                  <br>
+                  <p>Obtenida la matriz de camino, podemos inferir que el grafo ingresado: <strong id="esConexo"></strong> .</p>
+                </div>
+              </div>
+
+              <div class="collapsing" id="CaminoCorto">
+                <div class="">
+                  <div class="row d-flex justify-content-center">
+                    <h4>Camino más corto</h4>
+                  </div><br>
+                  <p>Seleccione un vértice de <strong>entrada</strong> y otro de <strong>salida</strong>:</p>
+                  <div class="row form-group d-flex justify-content-around">
+                    <div class="col-5 pl-0 mx-2">
+                      <label for="">Entrada </label>
+                      <input type="text" id="inputEntrada" class="form-control mx-2" placeholder="from">
+                    </div>
+                    <div class="col-5 pl-0 mx-2">
+                      <label for="">Salida </label>
+                      <input type="text" id="inputSalida" class="form-control mx-2" placeholder="to">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col d-flex justify-content-center">
+                      <button onclick="item_CaminoCorto()" id="item2" class="btn btn-primary text-white">Analizar</button>
+                    </div>
+                  </div>
+                  <br>
+                  <div >
+                    <p>El camino más corto encontrado entre los vértices ingresados es:</p><br>
+                    <p class="text-center text-uppercase"><strong id="Camino_corto"></strong></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="collapsing" id="Hamil_Euler">
+                <div class="">
+                  <div class="row d-flex justify-content-center">
+                    <h4>Hamiltoniano y/o Euleriano</h4>
+                    <button onclick="item_euleriano()" id="item3" class="btn btn-primary ml-3" ><em class="fas fa-search fa-lg text-white"></em></button>
+                  </div><br>
+                  <p>Podemos decir que el grafo : <strong id="esEu"></strong></p>
+                  <p>Podemos decir que el grafo : <strong id="esHam"></strong></p>
+                </div>
+              </div>
+              
+              <div class="collapsing" id="FlujoMaximo">
+                <div class="">
+                  <div class="row d-flex justify-content-center">
+                    <h4>Flujo Máximo</h4>
+                  </div><br>
+                  <p>Seleccione un vértice de <strong>entrada</strong> y otro de <strong>salida</strong>:</p>
+                  <div class="row form-group d-flex justify-content-around">
+                    <div class="col-5 pl-0 mx-2">
+                      <label for="">Entrada </label>
+                      <input type="text" id="fm_Entrada" class="form-control mx-2" placeholder="from">
+                    </div>
+                    <div class="col-5 pl-0 mx-2">
+                      <label for="">Salida </label>
+                      <input type="text" id="fm_Salida" class="form-control mx-2" placeholder="to">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col  d-flex justify-content-center">
+                      <button onclick="item_FlujoMaximo()" id="item4" class="btn btn-primary text-white" style="text-decoration:none"">Analizar</button>
+                    </div>
+                  </div>
+                  <br>
+                  <div id="alerta"></div>
+                  <div>
+                    <p>El Flujo Máximo para el grafo ingresado es: <strong id="salida_FlujoMaximo"></strong> .</p>
+                  </div>
+                </div>
+              </div>
+
+              <
+
+            </div>
+          </div>
+          <div class="row my-5"></div>
+        </div>
+      </div>
+
+    <br>
+    <br>
+    <br>
+    <!--FOOTER-->
+    <div>
+      <div class="container">
+        <footer class="pt-1">
+          <div class="row">
+              <div class="col d-flex justify-content-center text-white">
+                  Copyright 2021<em class="far fa-copyright fa-sm mx-1 pt-1"></em>Ingenería Civil en Computación
+              </div>
+          </div>
+      </footer>
+      </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/grafos.js"></script>
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+:root{
+    --marineBlue: #043353;
+    --lightBlue:#18A4E0;
+    --nordicBreeze: #D3DDE6;
+}
+body{
+    background-image: url("../img/negro.png");
+}
+nav{background-color:var(--marineBlue);}
+p{font-size: 18px;}
+strong{color: var(--marineBlue);}
+
+footer{
+    background-color: var(--lightBlue);
+}
+
+#navtitle{
+    font-family: 'Arial', helvetica;
+    color: white;
+}
+
+#menu{
+    font-family: 'Arial', helvetica;
+    color: white;
+}
+
+#menu:hover{
+    background-color: #3a5c80;
+    border-radius: 0.3rem;
+}
+
+#title{
+    font-family: 'Arial', helvetica;
+    color: var(--marineBlue);
+    font-size: 40px;
+}
+
+#btnComenzar{
+    width: 200px; height: 40px;
+    padding: 4px;
+    font-size: 18px;
+    text-align: center;
+    color: var(--marineBlue);
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: var(--marineBlue);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#btnComenzar:hover{
+    background-color: var(--marineBlue);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 3px 3px 3px rgba(68,68,68,0.6);
+}
+
+#ticket{
+    list-style: none;
+    font-size: 18px;
+}
+
+#idTicket{
+    color: var(--marineBlue);
+}
+
+#idTicket:hover{
+    color: red;
+}
+
+#resultado{
+    border: 1px solid lightgray;
+}
+.analisis{
+    list-style: none;
+    border-radius: 0.2rem;
+    transition: 0.1s;
+    cursor: pointer;
+}
+.analisis:hover{
+    background-color: var(--marineBlue);
+    transform: scale(1.05);
+    color: white;
+    font-size:large;
+
+}
+
+#nombres{
+    list-style: none;
+    font-size: 18px;
+    transition: 0.1s;
+}
+#nombres:hover{
+    background-color: var(--marineBlue);
+    width: 200px;
+    color: white;
+    border-radius: 0.2rem;
+    font-size:large;
+    transform: scale(1.1);
+    box-shadow: 3px 3px 3px rgba(68,68,68,0.6);
+}
+
+
+
