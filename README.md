@@ -36,5 +36,10 @@ dirigidos y etiquetados, asignele un valor numerico a la arista y presione acept
 6. **Flujo Máximo**
     Seleccione un vértice de entrada y otro de salida. Luego presione el boton de *Analizar*
 
+7. **Cantidad de Nodos**
+    Para obtener la información, presione el boton con el icono de lupa.
+
+8. **Cantidad de Aristas**
+    Para obtener la información, presione el boton con el icono de lupa.
 
     
