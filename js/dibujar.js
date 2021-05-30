@@ -147,7 +147,7 @@ function draw() {
 
     
 
-    //a. matriz de caminos y grafo conexa o no
+    // Matriz de caminos y grafo conexa o no
     function buscar(columna,fila){
       var tipoGrafo = document.querySelector("#tipoGrafo").value;
       for(let i=0; i<(aristas_from.length);i++){
